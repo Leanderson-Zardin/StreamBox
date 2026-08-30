@@ -25,10 +25,19 @@ const popularMovies = [
   },
 ];
 
-function renderPopularMovies() {
+function renderPopularMovies(movies) {
   const popularMoviesContainer = document.querySelector("#popular-movies");
 
-  const moviesHtml = popularMovies
+  if (movies.length === 0) {
+    popularMoviesContainer.innerHTML = `
+      <p class="col-span-full py-6 text-center text-slate-400">
+        Nenhum filme encontrado.
+      </p>
+    `;
+    return;
+  }
+
+  const moviesHtml = movies
     .map((movie) => {
       return `
         <article class="catalog-card">
@@ -45,4 +54,15 @@ function renderPopularMovies() {
   popularMoviesContainer.innerHTML = moviesHtml;
 }
 
-renderPopularMovies();
+const searchInput = document.querySelector("#busca");
+
+searchInput.addEventListener("input", (event) => {
+  const searchText = event.target.value.toLowerCase();
+  const filteredMovies = popularMovies.filter((movie) => {
+    return movie.title.toLowerCase().includes(searchText);
+  });
+
+  renderPopularMovies(filteredMovies);
+});
+
+renderPopularMovies(popularMovies);
