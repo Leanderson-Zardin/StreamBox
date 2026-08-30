@@ -26,9 +26,9 @@ function renderPopularMovies(movies) {
         ? `<img
             src="${TMDB_IMAGE_BASE_URL}${movie.poster_path}"
             alt="Pôster de ${movie.title}"
-            class="h-48 w-full object-cover"
+            class="aspect-[2/3] w-full object-cover"
           />`
-        : `<div class="flex h-48 items-center justify-center bg-slate-800 p-4 text-center text-sm text-slate-400">
+        : `<div class="flex aspect-[2/3] w-full items-center justify-center bg-slate-800 p-4 text-center text-sm text-slate-400">
             Pôster indisponível
           </div>`;
 
